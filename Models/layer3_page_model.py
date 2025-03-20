@@ -2,9 +2,9 @@ from mongoengine import Document,ReferenceField,StringField,IntField,ListField,D
 from Models.course_model import Course
 from Models.subject_model import Subject
 from Models.year_model import Year
-from layer_1_model import Layer_1
-from layer_2_model import Layer_2
-from layer_3_model import Layer_3
+from Models.layer_1_model import Layer_1
+from Models.layer_2_model import Layer_2
+from Models.layer_3_model import Layer_3
 from Models.prompt_content_model import Prompt_content
 
 
