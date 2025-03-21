@@ -4,7 +4,7 @@ from Models.subject_model import Subject
 from Models.layer_1_model import Layer_1
 from Models.year_model import Year
 from Models.prompt_content_model import Prompt_content
-from Models.layer1_page_model import Layer1_page
+# from Models.layer1_page_model import Layer1_page
 
 
 class Layer1_page(Document):
@@ -16,7 +16,7 @@ class Layer1_page(Document):
     types = StringField(choices=['content','mcq','test_series'],required=True)
     sequence = IntField(required=True)
     hierarcy_level = IntField(default=0)
-    child_pages = ListField(ReferenceField(Layer1_page,reverse_delete_rule=2,required=True))
+    child_pages = ListField(ReferenceField("Layer1_page", reverse_delete_rule=2, required=True))
     prompt = ReferenceField(Prompt_content,reverse_delete_rule=2,required=True)    
 
    

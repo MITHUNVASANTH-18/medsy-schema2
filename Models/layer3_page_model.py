@@ -6,7 +6,7 @@ from Models.layer_1_model import Layer_1
 from Models.layer_2_model import Layer_2
 from Models.layer_3_model import Layer_3
 from Models.prompt_content_model import Prompt_content
-from Models.layer3_page_model import Layer3_page
+# from Models.layer3_page_model import Layer3_page
 
 
 
@@ -21,7 +21,7 @@ class Layer3_page(Document):
     types = StringField(choices=['content','mcq','test_series'],required=True)
     sequence = IntField(required=True)
     hierarcy_level = IntField(default=0)
-    child_pages = ListField(ReferenceField(Layer3_page,reverse_delete_rule=2,required=True))
+    child_pages = ListField(ReferenceField("Layer3_page", reverse_delete_rule=2, required=True))
     prompt = ReferenceField(Prompt_content,reverse_delete_rule=2,required=True)    
 
 
