@@ -22,7 +22,7 @@ class Layer3_page_creation_job(Document):
     def to_json(self):
         return {
             "id":str(self.id),
-            'job_id':str(self.job_id.id),
+            'job_id':self.job_id.to_json(),
             'course':str(self.course.id),
             'year':str(self.year.id),
             'subject':str(self.subject.id),

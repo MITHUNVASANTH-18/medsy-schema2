@@ -2,7 +2,9 @@ from mongoengine import Document,StringField,IntField,ReferenceField,DateTimeFie
 from Models.admin_model import Admin
 from Models.course_model import Course
 from datetime import datetime
-
+from Models.layer1_page_model import Layer1_page
+from Models.layer2_page_model import Layer2_page
+from Models.layer3_page_model import Layer3_page
 
 class Job_detail(Document):
     course = ReferenceField(Course,reverse_delete_rule=2,required=True)
@@ -13,6 +15,9 @@ class Job_detail(Document):
     completed_count=IntField()
     total_count=IntField()
     status=StringField()
+    layer1_page = ReferenceField(Layer1_page, reverse_delete_rule=2)
+    layer2_page = ReferenceField(Layer2_page, reverse_delete_rule=2)
+    layer3_page = ReferenceField(Layer3_page, reverse_delete_rule=2)
 
     def to_json(self):
         return{
@@ -23,6 +28,9 @@ class Job_detail(Document):
             "detail":self.detail,
             "completed_count":self.completed_count,
             "total_count":self.total_count,
-            "status":self.status
+            "status":self.status,
+            "layer1_page": str(self.layer1_page.id),
+            "layer2_page": str(self.layer2_page.id),
+            "layer3_page": str(self.layer2_page.id),
 
         }
