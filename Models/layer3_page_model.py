@@ -1,4 +1,4 @@
-from mongoengine import Document,ReferenceField,StringField,IntField,ListField,DictField
+from mongoengine import Document,ReferenceField,StringField,IntField,ListField
 from Models.course_model import Course
 from Models.subject_model import Subject
 from Models.year_model import Year
@@ -6,6 +6,7 @@ from Models.layer_1_model import Layer_1
 from Models.layer_2_model import Layer_2
 from Models.layer_3_model import Layer_3
 from Models.prompt_content_model import Prompt_content
+from Models.layer3_page_model import Layer3_page
 
 
 
@@ -20,7 +21,7 @@ class Layer3_page(Document):
     types = StringField(choices=['content','mcq','test_series'],required=True)
     sequence = IntField(required=True)
     hierarcy_level = IntField(default=0)
-    child_pages = ListField(DictField())
+    child_pages = ListField(ReferenceField(Layer3_page,reverse_delete_rule=2,required=True))
     prompt = ReferenceField(Prompt_content,reverse_delete_rule=2,required=True)    
 
 
@@ -39,6 +40,6 @@ class Layer3_page(Document):
             'types':str(self.types),
             'sequence':str(self.sequence),
             'hierarcy_level':str(self.hierarcy_level),
-            "child_pages":self.child_pages if self.child_pages else None,
+            "child_pages": [child.to_json() for child in self.child_pages] if self.child_pages else [],
             "prompt": self.prompt
         }
