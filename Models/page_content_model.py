@@ -5,6 +5,7 @@ from Models.layer_1_model import Layer_1
 from Models.layer_2_model import Layer_2
 from Models.layer_3_model import Layer_3
 from Models.year_model import Year
+from Models.prompt_content_model import Prompt_content
 
 
 class PageContent(Document):
@@ -16,6 +17,7 @@ class PageContent(Document):
     layer3 = ReferenceField(Layer_3, reverse_delete_rule=2)
     content = ListField(DictField(), required=True)
     page = GenericReferenceField(required=True)
+    prompt = ReferenceField(Prompt_content,reverse_delete_rule=2, required=True)
    
     def to_json(self):
         return {
@@ -28,4 +30,5 @@ class PageContent(Document):
             "layer3": str(self.layer3.id),
             "page": str(self.page.id),
             "content": self.content,
+            "prompt": self.prompt,
         }
