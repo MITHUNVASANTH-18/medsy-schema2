@@ -5,7 +5,7 @@ from Models.model_model import Model
 class Prompt_content(Document):
     name = StringField(required=True)
     course = ReferenceField(Course,reverse_delete_rule=2,required=True)
-    system_content = DictField(required=True)
+    system_content = StringField(required=True)
     framework = ListField(DictField())
     model = ReferenceField(Model,reverse_delete_rule=2,required=True)
 
@@ -13,9 +13,9 @@ class Prompt_content(Document):
     def to_json(self):
         return {
             "id": str(self.id),
-            "name": str(self.name),
+            "name": self.name,
             'course':str(self.course.id),
-            'system_content':str(self.system_content),
-            'framework':str(self.framework),
+            'system_content':self.system_content,
+            'framework':self.framework,
             'model':str(self.model.id)
         }
