@@ -37,5 +37,5 @@ class PageContent(Document):
             "layer2_page": str(self.layer2_page.id),
             "layer3_page": str(self.layer2_page.id),
             "content": self.content,
-            "prompt": self.prompt,
+            "prompt": self.prompt.to_json(),
         }
