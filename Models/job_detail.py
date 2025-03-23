@@ -21,16 +21,16 @@ class Job_detail(Document):
 
     def to_json(self):
         return{
-            "course":str(self.course.id) if self.course else None
-            ,"created_by":str(self.created_by.id) if self.created_by else None,
+            "course":str(self.course.id) if self.course else None,
+            "created_by":str(self.created_by.id) if self.created_by else None,
             "created_at":str(self.created_at),
             "target":self.target,
             "detail":self.detail,
             "completed_count":self.completed_count,
             "total_count":self.total_count,
             "status":self.status,
-            "layer1_page": str(self.layer1_page.id),
-            "layer2_page": str(self.layer2_page.id),
-            "layer3_page": str(self.layer2_page.id),
+            "layer1_page": str(self.layer1_page.id) if self.layer1_page else None,
+            "layer2_page": str(self.layer2_page.id) if self.layer1_page else None,
+            "layer3_page": str(self.layer2_page.id) if self.layer1_page else None,
 
         }
