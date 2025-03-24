@@ -30,12 +30,12 @@ class PageContent(Document):
             'course': str(self.course.id),
             'year': str(self.year.id),
             "subject": str(self.subject.id),
-            "layer1": str(self.layer1.id),
+            "layer1": str(self.layer1.id) if self.layer1 else None,
             "layer2": str(self.layer2.id),
             "layer3": str(self.layer3.id),
-            "layer1_page": str(self.layer1_page.id),
-            "layer2_page": str(self.layer2_page.id),
-            "layer3_page": str(self.layer2_page.id),
+            "layer1_page": str(self.layer1_page.id) if self.layer1_page else None,
+            "layer2_page": str(self.layer2_page.id) if self.layer2_page else None,
+            "layer3_page": str(self.layer3_page.id) if self.layer3_page else None,
             "content": self.content,
-            "prompt": self.prompt.to_json(),
+            "prompt": self.prompt.to_json() if self.prompt else None
         }
