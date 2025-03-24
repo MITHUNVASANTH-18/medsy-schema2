@@ -21,7 +21,7 @@ class PageContent(Document):
     layer1_page = ReferenceField(Layer1_page, reverse_delete_rule=2, null=True)
     layer2_page = ReferenceField(Layer2_page, reverse_delete_rule=2, null=True)
     layer3_page = ReferenceField(Layer3_page, reverse_delete_rule=2, null=True)
-    content = ListField(StringField())
+    content = ListField()
     prompt = ReferenceField(Prompt_content, reverse_delete_rule=2, required=True)
 
     def to_json(self):
