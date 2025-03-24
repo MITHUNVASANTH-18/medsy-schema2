@@ -1,4 +1,4 @@
-from mongoengine import Document, ReferenceField, StringField
+from mongoengine import Document, ReferenceField, StringField,ListField
 from Models.course_model import Course
 from Models.subject_model import Subject
 from Models.layer_1_model import Layer_1
@@ -21,7 +21,7 @@ class PageContent(Document):
     layer1_page = ReferenceField(Layer1_page, reverse_delete_rule=2, null=True)
     layer2_page = ReferenceField(Layer2_page, reverse_delete_rule=2, null=True)
     layer3_page = ReferenceField(Layer3_page, reverse_delete_rule=2, null=True)
-    content = StringField(required=True)
+    content = ListField(StringField())
     prompt = ReferenceField(Prompt_content, reverse_delete_rule=2, required=True)
 
     def to_json(self):
