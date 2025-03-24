@@ -28,3 +28,14 @@ class Layer3_page(Document):
             "child_pages": [child.to_json() for child in self.child_pages] if self.child_pages else [],
             "prompts": [prompt.to_json() for prompt in self.prompts] if self.prompts else None
         }
+    
+    def to_user(self):
+        return {
+            "id": str(self.id),
+            'course':str(self.course.id),
+            'name':str(self.name),
+            'types':str(self.types),
+            'sequence':str(self.sequence),
+            'hierarcy_level':str(self.hierarcy_level),
+            "child_pages": [child.to_json() for child in self.child_pages] if self.child_pages else [],
+        }

@@ -39,3 +39,18 @@ class PageContent(Document):
             "content": self.content,
             "prompt": self.prompt.to_json() if self.prompt else None
         }
+    
+    def to_user(self):
+        return {
+            "id": str(self.id),
+            'course': str(self.course.id) if self.course else None,
+            'year': str(self.year.id) if self.year else None,
+            "subject": str(self.subject.id) if self.subject else None,
+            "layer1": str(self.layer1.id) if self.layer1 else None,
+            "layer2": str(self.layer2.id) if self.layer2 else None,
+            "layer3": str(self.layer3.id) if self.layer3 else None,
+            "layer1_page": str(self.layer1_page.id) if self.layer1_page else None,
+            "layer2_page": str(self.layer2_page.id) if self.layer2_page else None,
+            "layer3_page": str(self.layer3_page.id) if self.layer3_page else None,
+            "content": self.content,
+        }
