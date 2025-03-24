@@ -30,7 +30,7 @@ class Job_detail(Document):
             "total_count":self.total_count,
             "status":self.status,
             "layer1_page": str(self.layer1_page.id) if self.layer1_page else None,
-            "layer2_page": str(self.layer2_page.id) if self.layer1_page else None,
-            "layer3_page": str(self.layer2_page.id) if self.layer1_page else None,
+            "layer2_page": str(self.layer2_page.id) if self.layer2_page else None,
+            "layer3_page": str(self.layer3_page.id) if self.layer3_page else None,
 
         }
